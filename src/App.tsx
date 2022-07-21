@@ -6,7 +6,7 @@ function App() {
   return (
     <Container>
       <Header />
-      <div className="grid md:grid-cols-layout grid-cols-1 gap-4 md:bg-red">
+      <div className="grid grid-cols-1 md:grid-cols-layout gap-4 md:bg-red">
         <section className="w-full">
           <ProductsGrid />
         </section>
