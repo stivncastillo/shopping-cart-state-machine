@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Tshirt Nasa",
+    "image": "/assets/products/tshirt1.jpg",
+    "price": 14
+  },
+  {
+    "id": 2,
+    "name": "Tshirt squanchy",
+    "image": "/assets/products/tshirt2.png",
+    "price": 16
+  },
+  {
+    "id": 3,
+    "name": "Tshirt Rick",
+    "image": "/assets/products/tshirt3.jpg",
+    "price": 20
+  },
+  {
+    "id": 4,
+    "name": "Tshirt Rick 4",
+    "image": "/assets/products/tshirt4.jpg",
+    "price": 22
+  },
+  {
+    "id": 5,
+    "name": "Tshirt Rick 5",
+    "image": "/assets/products/tshirt5.jpg",
+    "price": 11
+  },
+  {
+    "id": 6,
+    "name": "Tshirt Homer 6",
+    "image": "/assets/products/tshirt6.jpg",
+    "price": 12
+  },
+  {
+    "id": 7,
+    "name": "Hoddie 7",
+    "image": "/assets/products/tshirt7.jpg",
+    "price": 11
+  },
+  {
+    "id": 8,
+    "name": "Hoddie Rick & Morty 8",
+    "image": "/assets/products/tshirt8.jpg",
+    "price": 15
+  }
+]
