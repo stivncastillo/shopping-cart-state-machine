@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "../../components/common/Button";
 import useWindowSize from "../../hooks/useWindowSize";
+import ResumeItem from "./components/ResumeItem";
 
 const ResumeCard = () => {
   const { width } = useWindowSize();
@@ -19,7 +20,7 @@ const ResumeCard = () => {
   };
 
   return (
-    <div className="bg-slate-100 p-4 w-full rounded-md sticky md:top-4 bottom-4">
+    <div className="bg-slate-100 p-4 w-full drop-shadow-top md:drop-shadow-none rounded-md sticky md:top-4 bottom-4">
       <div className="flex flex-row justify-between items-center mb-4">
         <h2 className="text-xl">Resume</h2>
 
@@ -33,16 +34,9 @@ const ResumeCard = () => {
 
       {showDetails && (
         <div className="flex flex-col">
-          <div className="flex flex-row justify-between items-center py-4 border-b border-b-slate-200">
-            <span className="text-sm">Product Name (x2)</span>
-
-            <span className="text-md font-semibold">$1800</span>
-          </div>
-          <div className="flex flex-row justify-between items-center py-4 border-b border-b-slate-200">
-            <span className="text-sm">Product Name (x2)</span>
-
-            <span className="text-md font-semibold">$1800</span>
-          </div>
+          <ResumeItem name="Product 1" qty={1} price={10} />
+          <ResumeItem name="Product 2" qty={2} price={10} />
+          <ResumeItem name="Product 3" qty={5} price={10} />
         </div>
       )}
 
