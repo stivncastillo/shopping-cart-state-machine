@@ -1,0 +1,1 @@
+export const parsePrice = (price: number): number => parseFloat(price.toFixed(2))
