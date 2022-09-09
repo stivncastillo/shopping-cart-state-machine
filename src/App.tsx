@@ -5,10 +5,11 @@ import { ResumeCard } from "./feature/cart";
 import { useMachine } from "@xstate/react";
 import storeMachine from "./machine/storeMachine";
 import Spinner from "./components/common/Spinner";
+import CheckoutCart from "./feature/cart/CheckoutCart";
+import SummaryCard from "./feature/cart/SummaryCard";
 
 function App() {
   const [state, send] = useMachine(storeMachine);
-  console.log("👻 ->", state.context);
 
   const { products, productsLoading } = state.context;
 
@@ -31,9 +32,17 @@ function App() {
           )}
         </section>
         <section className="md:relative fixed left-0 right-0 bottom-0">
-          {state.matches("cart.resume") && (
-            <ResumeCard send={send} state={state} />
-          )}
+          <div className="bg-slate-100 p-4 w-full drop-shadow-top md:drop-shadow-none rounded-md sticky md:top-4 bottom-4">
+            {state.matches("cart.resume") && (
+              <ResumeCard send={send} state={state} />
+            )}
+            {state.matches("cart.checkout") && (
+              <CheckoutCart send={send} state={state} />
+            )}
+            {state.matches("cart.summary") && (
+              <SummaryCard send={send} state={state} />
+            )}
+          </div>
         </section>
       </div>
     </Container>

@@ -18,7 +18,7 @@ export const OutlineButton = ({ children, ...props }: OutlineButtonProps) => {
 export const Button = ({ children, ...props }: ButtonProps) => {
   return (
     <button
-      className="py-4 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-bold uppercase rounded-md disabled:opacity-50"
+      className="p-4 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-bold uppercase rounded-md disabled:opacity-50"
       {...props}
     >
       {children}

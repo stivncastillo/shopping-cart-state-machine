@@ -21,7 +21,12 @@ interface StoreContext {
   products: Array<ProductType>;
   productsLoading: boolean;
   error: string;
-  shoppingCart: Array<ShoppingProductType>
+  shoppingCart: Array<ShoppingProductType>;
+  user: {
+    email: string | null,
+    name: string | null
+  },
+  loadingpurchase: boolean
 }
 
 const storeMachine = createMachine<StoreContext>(
@@ -32,7 +37,12 @@ const storeMachine = createMachine<StoreContext>(
       products: [],
       productsLoading: true,
       error: "",
-      shoppingCart: []
+      shoppingCart: [],
+      user: {
+        email: null,
+        name: null
+      },
+      loadingpurchase: false
     },
     states: {
       products: {
@@ -63,6 +73,7 @@ const storeMachine = createMachine<StoreContext>(
             on: {
               START: {
                 target: "resume",
+                actions: 'assingClearCart'
               },
             },
           },
@@ -70,9 +81,11 @@ const storeMachine = createMachine<StoreContext>(
             on: {
               CONFIRM: {
                 target: "checkout",
+                cond: "moreThanOneProductOnCart"
               },
               CLEAN: {
-                target: "initial",
+                target: "resume",
+                actions: 'assingClearCart'
               },
               ADD: {
                 target: "resume",
@@ -102,11 +115,23 @@ const storeMachine = createMachine<StoreContext>(
           },
           checkout: {
             on: {
-              DONE: {
-                target: "initial",
+              GO_BACK_RESUME: {
+                target: 'resume'
+              },
+              FINISH_PURCHASE: {
+                target: "summary",
+                actions: 'assingUser'
               },
             },
           },
+          summary: {
+            on: {
+              DONE: {
+                target: "resume",
+                actions: 'assingClearCart'
+              },
+            }
+          }
         }
       },
     },
@@ -123,7 +148,27 @@ const storeMachine = createMachine<StoreContext>(
       assingError: assign({
         error: (context, event: any) => "Ocurrió un error",
       }),
+      assingClearCart: assign({
+        shoppingCart: (context, event) => [],
+        user: (context, event) => ({
+          name: null, email: null
+        })
+      }),
+      assingUser: assign({
+        user: (context, event) => {
+          return {
+            name: event.name,
+            email: event.email,
+          }
+        },
+        loadingpurchase: (context, event) => true,
+      }),
     },
+    guards: {
+      moreThanOneProductOnCart: (context) => {
+        return context.shoppingCart.length > 0;
+      }
+    }
   }
 );
 

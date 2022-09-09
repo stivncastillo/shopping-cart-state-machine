@@ -40,7 +40,7 @@ const ResumeCard = ({ send, state }: Props) => {
   }, [shoppingCart]);
 
   return (
-    <div className="bg-slate-100 p-4 w-full drop-shadow-top md:drop-shadow-none rounded-md sticky md:top-4 bottom-4">
+    <>
       {!shoppingCart.length ? (
         <Alert>
           Please add products to cart clicking{" "}
@@ -83,11 +83,22 @@ const ResumeCard = ({ send, state }: Props) => {
 
               <span className="text-lg font-bold">${getTotal()}</span>
             </div>
-            <Button disabled={!shoppingCart.length}>Checkout</Button>
+            <Button
+              disabled={!shoppingCart.length}
+              onClick={() => send("CONFIRM")}
+            >
+              Checkout
+            </Button>
+            <button
+              className="text-indigo-400 text-sm mt-2"
+              onClick={() => send("CLEAN")}
+            >
+              Clear cart
+            </button>
           </div>
         </>
       )}
-    </div>
+    </>
   );
 };
 
